@@ -1,0 +1,32 @@
+<form [formGroup]="taskForm" (ngSubmit)="submitForm()" class="task-form">
+  <div class="form-group">
+    <label for="title">Título:</label>
+    <input id="title" formControlName="title" type="text" placeholder="Título de la tarea" />
+    <small *ngIf="taskForm.get('title')?.invalid && taskForm.get('title')?.touched">
+      El título es obligatorio y debe tener al menos 3 caracteres.
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Descripción:</label>
+    <textarea id="description" formControlName="description" placeholder="Descripción de la tarea"></textarea>
+    <small *ngIf="taskForm.get('description')?.invalid && taskForm.get('description')?.touched">
+      La descripción es obligatoria.
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="date">Fecha:</label>
+    <input id="date" formControlName="date" type="date" />
+    <small *ngIf="taskForm.get('date')?.invalid && taskForm.get('date')?.touched">
+      La fecha es obligatoria.
+    </small>
+  </div>
+
+  <div class="form-group checkbox">
+    <input id="done" formControlName="done" type="checkbox" />
+    <label for="done">¿Completada?</label>
+  </div>
+
+  <button type="submit" [disabled]="taskForm.invalid">Guardar Tarea</button>
+</form>

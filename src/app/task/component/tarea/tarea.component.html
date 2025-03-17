@@ -1,0 +1,41 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>
+      <ion-input 
+        [(ngModel)]="task.title" 
+        placeholder="Título" 
+        [readonly]="!isEditing">
+      </ion-input>
+    </ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-textarea 
+      [(ngModel)]="task.description" 
+      placeholder="Descripción" 
+      [readonly]="!isEditing">
+    </ion-textarea>
+
+    <p><strong>Fecha:</strong> {{ task.date | date: 'short' }}</p>
+
+    <ion-item>
+      <ion-label>{{ task.done ? 'Completada' : 'No completada' }}</ion-label>
+      <ion-toggle 
+        aria-label="Toggle tarea completada" 
+        color="medium" 
+        [checked]="task.done"
+        [disabled]="!isEditing"
+        (ionChange)="toggleTaskCompletion($event)">
+      </ion-toggle>
+    </ion-item>
+
+    <!-- Botón para alternar entre Editar y Guardar -->
+    <ion-button (click)="isEditing ? updateTask(task) : toggleEditMode()" expand="block" color="primary">
+      {{ isEditing ? 'Guardar' : 'Editar' }}
+    </ion-button>
+
+    <ion-button (click)="deleteTask(task)" expand="block" fill="clear" color="danger">
+      Borrar tarea
+    </ion-button>
+  </ion-card-content>
+</ion-card>

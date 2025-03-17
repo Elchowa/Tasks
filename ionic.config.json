@@ -1,0 +1,7 @@
+{
+  "name": "TallerTask",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
